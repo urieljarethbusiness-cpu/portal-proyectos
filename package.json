@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "migrate:deploy": "prisma migrate deploy",
+    "deploy": "pnpm run build && pnpm run migrate:deploy && pnpm run start",
     "lint": "eslint",
     "gen": "prisma generate",
     "postinstall": "prisma generate"

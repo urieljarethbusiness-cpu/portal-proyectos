@@ -50,4 +50,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/src/generated/prisma
+# prisma generated client
+/src/generated/client/
+/src/generated/client/query_engine-*.dll.node.tmp*

@@ -1,0 +1,235 @@
+.container {
+  padding: 0;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  padding: 16px 24px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--surface-border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.table td {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--surface-border);
+  vertical-align: middle;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.projectInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.projectTitle {
+  font-weight: 600;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.projectDesc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.phaseBadge {
+  font-size: 0.72rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 700;
+  border: 1px solid var(--surface-border);
+  display: inline-block;
+}
+
+.phaseSelect {
+  background: var(--surface-hover);
+  border: 1px solid var(--primary);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.phaseSelect option {
+  background: var(--surface);
+  color: #fff;
+}
+
+.statusBadge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.abierto { 
+  background: rgba(59, 226, 135, 0.08); 
+  color: var(--success); 
+  border-color: rgba(59, 226, 135, 0.2);
+}
+
+.terminado { 
+  background: rgba(255, 204, 51, 0.1); 
+  color: var(--gold); 
+  border-color: rgba(255, 204, 51, 0.3);
+}
+
+.perdido { 
+  background: rgba(255, 92, 92, 0.08); 
+  color: var(--danger); 
+  border-color: rgba(255, 92, 92, 0.2);
+}
+
+.typeBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.price {
+  font-weight: 700;
+  color: var(--primary);
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+.editable {
+  cursor: pointer;
+  border: 1px dashed transparent;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.editable:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--primary);
+}
+
+.editInput, .editInputSmall, .editInputDate {
+  background: var(--surface-hover);
+  border: 1px solid var(--primary);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.editInput {
+  width: 100%;
+}
+
+.editInputSmall {
+  width: 80px;
+}
+
+.editInputDate {
+  width: 130px;
+}
+
+.slaText {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.slaCell {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dateEditContainer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--surface-hover);
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  padding-right: 4px;
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.dateEditContainer .editInputDate {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.clearDateBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 92, 92, 0.1);
+  color: #ff5c5c;
+  font-size: 1.2rem;
+  line-height: 0;
+  border: 1px solid rgba(255, 92, 92, 0.2);
+  transition: var(--transition);
+}
+
+.clearDateBtn:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+.viewBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.viewBtn:hover {
+  background: var(--primary);
+  color: #000;
+  transform: translateY(-2px);
+}
+
+.empty {
+  padding: 60px;
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+}

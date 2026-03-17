@@ -1,0 +1,158 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.addForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.textarea {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--surface-border);
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary);
+  color: #000;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.addBtn:hover {
+  filter: brightness(1.1);
+}
+
+.toggleAddBtn {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(89, 220, 201, 0.1);
+  color: var(--primary);
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  transition: var(--transition);
+  border: 1px dashed rgba(89, 220, 201, 0.3);
+}
+
+.toggleAddBtn:hover {
+  background: rgba(89, 220, 201, 0.2);
+  transform: translateY(-2px);
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.cancelBtn {
+  background: transparent;
+  color: var(--text-muted);
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.cancelBtn:hover {
+  color: var(--danger);
+}
+
+.noteList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.noteItem {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.noteHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.noteMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.noteIcon {
+  color: var(--primary);
+}
+
+.deleteBtn {
+  color: var(--text-muted);
+  transition: var(--transition);
+  opacity: 0;
+}
+
+.noteItem:hover .deleteBtn {
+  opacity: 1;
+}
+
+.deleteBtn:hover {
+  color: var(--danger);
+}
+
+.noteContent {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-main);
+  white-space: pre-wrap;
+}
+
+.emptyText {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding: 20px 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

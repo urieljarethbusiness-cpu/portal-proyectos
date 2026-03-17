@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id          String       @id @default(cuid())
+  title       String
+  description String
+  basePrice   Float
+  phase       String       @default("Pendiente")
+  status      String       @default("Abierto")
+  slaDate     DateTime?
+  projectType String       @default("FREELANCE") // FREELANCE, CORPORATE, IGUALA
+  isFreelance Boolean      @default(true)
+  billingFrequency String   @default("NONE") // NONE, WEEKLY, BIWEEKLY, MONTHLY, ANNUAL
+  billingName      String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  payments    Payment[]
+  extras      Extra[]
+  tasks       Task[]
+  attachments Attachment[]
+  notes       Note[]
+}
+
+model Payment {
+  id          String    @id @default(cuid())
+  amount      Float
+  isPaid      Boolean   @default(false)
+  expectedDate DateTime?
+  description String?
+  projectId   String
+  project     Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model Extra {
+  id          String    @id @default(cuid())
+  title       String
+  cost        Float
+  projectId   String
+  project     Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model Task {
+  id          String   @id @default(cuid())
+  title       String
+  isCompleted Boolean  @default(false)
+  priority    String   @default("MEDIUM") // LOW, MEDIUM, HIGH
+  slaDate     DateTime?
+  createdAt   DateTime @default(now())
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model Attachment {
+  id          String   @id @default(cuid())
+  filename    String
+  filepath    String
+  uploadedAt  DateTime @default(now())
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model Note {
+  id          String   @id @default(cuid())
+  content     String
+  createdAt   DateTime @default(now())
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}

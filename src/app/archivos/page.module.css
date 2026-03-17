@@ -1,0 +1,422 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.residualWarningBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 92, 92, 0.1);
+  border: 1px solid rgba(255, 92, 92, 0.3);
+  border-radius: 20px;
+  color: var(--danger);
+  font-size: 0.8rem;
+  font-weight: 700;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.7; }
+}
+
+/* ── Empty State ── */
+.emptyState {
+  padding: 80px 40px;
+  text-align: center;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.emptyTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.emptySubtitle {
+  font-size: 0.9rem;
+}
+
+/* ── Projects Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+/* ── Project Folder Card ── */
+.projectFolder {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: var(--transition);
+}
+
+.projectFolder:hover {
+  border-color: rgba(89, 220, 201, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(89, 220, 201, 0.05);
+}
+
+.folderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.folderMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.projectName {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fileCount {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.folderActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.btnZip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  background: rgba(89, 220, 201, 0.08);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid rgba(89, 220, 201, 0.2);
+  transition: var(--transition);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btnZip:hover {
+  background: rgba(89, 220, 201, 0.18);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.linkBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.linkBtn:hover {
+  color: var(--primary);
+  background: rgba(89, 220, 201, 0.1);
+}
+
+/* ── File List ── */
+.fileList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fileItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+
+.fileItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.fileItem:hover .downloadBtn {
+  opacity: 1;
+}
+
+.fileIcon {
+  color: var(--secondary);
+  flex-shrink: 0;
+  display: flex;
+}
+
+.fileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.fileName {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fileDate {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.downloadBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  background: rgba(89, 220, 201, 0.08);
+  color: var(--primary);
+  opacity: 1;
+  transition: var(--transition);
+  flex-shrink: 0;
+  text-decoration: none;
+  border: 1px solid rgba(89, 220, 201, 0.15);
+}
+
+.downloadBtn:hover {
+  background: rgba(89, 220, 201, 0.22);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(89, 220, 201, 0.2);
+}
+
+/* ── Residual Section ── */
+.residualSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 28px;
+  background: rgba(255, 92, 92, 0.03);
+  border: 1px dashed rgba(255, 92, 92, 0.15);
+  border-radius: var(--radius-md);
+}
+
+.residualSectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.residualTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--danger);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.residualSubtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  max-width: 620px;
+  line-height: 1.5;
+}
+
+.residualGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.residualCard {
+  background: rgba(19, 28, 33, 0.8);
+  border: 1px solid rgba(255, 92, 92, 0.2);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.residualCardTop {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.residualBadge {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: fit-content;
+}
+
+.badgeOrphan {
+  background: rgba(255, 92, 92, 0.15);
+  color: var(--danger);
+  border: 1px solid rgba(255, 92, 92, 0.3);
+}
+
+.badgeMissing {
+  background: rgba(255, 184, 77, 0.15);
+  color: var(--warning);
+  border: 1px solid rgba(255, 184, 77, 0.3);
+}
+
+.residualProject {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.residualFile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: rgba(255, 92, 92, 0.05);
+  border-radius: var(--radius-sm);
+}
+
+.residualFileIcon {
+  color: var(--danger);
+  opacity: 0.7;
+  flex-shrink: 0;
+  display: flex;
+}
+
+.residualFileName {
+  font-size: 0.85rem;
+  color: var(--text-main);
+  word-break: break-all;
+  flex: 1;
+}
+
+.downloadBtnResidual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: rgba(255, 92, 92, 0.1);
+  color: var(--danger);
+  text-decoration: none;
+  border: 1px solid rgba(255, 92, 92, 0.2);
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.downloadBtnResidual:hover {
+  background: rgba(255, 92, 92, 0.25);
+  border-color: var(--danger);
+  transform: translateY(-1px);
+}
+
+.residualActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.btnResidual {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.btnVincular {
+  color: var(--success);
+  background: rgba(59, 226, 135, 0.1);
+  border: 1px solid rgba(59, 226, 135, 0.2);
+  text-decoration: none;
+}
+
+.btnZipResidual {
+  color: var(--primary);
+  background: rgba(89, 220, 201, 0.08);
+  border: 1px solid rgba(89, 220, 201, 0.2);
+  text-decoration: none;
+}
+
+.btnZipResidual:hover {
+  background: rgba(89, 220, 201, 0.2);
+  border-color: var(--primary);
+}
+
+.btnEliminar {
+  color: var(--danger);
+  background: rgba(255, 92, 92, 0.1);
+  border: 1px solid rgba(255, 92, 92, 0.2);
+}
+
+.btnResidual:hover {
+  filter: brightness(1.2);
+  transform: translateY(-1px);
+}

@@ -1,0 +1,69 @@
+.container {
+  position: relative;
+}
+
+.currentBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.abierto { background: rgba(59, 226, 135, 0.15); color: var(--success); }
+.terminado { background: rgba(89, 220, 201, 0.15); color: var(--primary); }
+.perdido { background: rgba(255, 92, 92, 0.15); color: var(--danger); }
+
+.currentBtn:hover {
+  filter: brightness(1.2);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 140px;
+  padding: 8px;
+  z-index: 11;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.option {
+  width: 100%;
+  padding: 8px 12px;
+  text-align: left;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.option:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+.active {
+  color: var(--primary);
+  background: rgba(89, 220, 201, 0.05);
+}

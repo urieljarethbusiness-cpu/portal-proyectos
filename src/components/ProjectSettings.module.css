@@ -1,0 +1,188 @@
+.metaInfo {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+/* ── Editable Title ────────────────────── */
+.titleWrapper {
+  margin-bottom: 12px;
+}
+
+.titleDisplayRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.titleDisplay {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.15;
+}
+
+.titleEditBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition);
+  opacity: 0;
+}
+
+.titleDisplayRow:hover .titleEditBtn {
+  opacity: 1;
+}
+
+.titleEditBtn:hover {
+  color: var(--primary);
+  background: rgba(89, 220, 201, 0.08);
+}
+
+.titleEditRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.titleInput {
+  flex: 1;
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  background: rgba(89, 220, 201, 0.05);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-sm);
+  color: #fff;
+  padding: 6px 14px;
+  font-family: inherit;
+  outline: none;
+  box-shadow: 0 0 12px var(--primary-glow);
+  width: 100%;
+}
+
+.titleSaveBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  border: none;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  color: #000;
+  cursor: pointer;
+  transition: var(--transition);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.titleSaveBtn:hover {
+  filter: brightness(1.1);
+}
+
+.metaItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.metaIcon {
+  color: var(--primary);
+  margin-top: 4px;
+}
+
+.configBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.configLabel {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 4px 0;
+  border-radius: var(--radius-sm);
+  color: #fff;
+  font-weight: 600;
+}
+
+.clickable:hover {
+  color: var(--primary);
+}
+
+.dateInput {
+  background: var(--surface-hover);
+  border: 1px solid var(--primary);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.selectWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.select {
+  appearance: none;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--surface-border);
+  color: #fff;
+  padding: 7px 36px 7px 12px;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+  outline: none;
+}
+
+.select:hover {
+  border-color: var(--primary);
+}
+
+.option {
+  background-color: #131c21; /* Match --surface */
+  color: #fff;
+  padding: 10px;
+}
+
+.selectIcon {
+  position: absolute;
+  right: 8px;
+  pointer-events: none;
+  color: var(--text-muted);
+}
+
+.textInput {
+  background: var(--surface-hover);
+  border: 1px solid var(--primary);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  width: 151px;
+}

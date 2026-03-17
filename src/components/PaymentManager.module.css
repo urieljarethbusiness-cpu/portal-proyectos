@@ -1,0 +1,203 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.9rem;
+}
+
+.addBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.addForm {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--surface-border);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.formRow {
+  display: flex;
+  gap: 10px;
+}
+
+.formRow input {
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.dateInput {
+  flex: 0.6 !important;
+}
+
+.submitBtn {
+  background: var(--primary);
+  color: #000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+.paymentList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.paymentItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: var(--transition);
+}
+
+.paymentItem:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.paid {
+  opacity: 0.7;
+}
+
+.paid .pDesc {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.toggleBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.toggleBtn:hover {
+  transform: scale(1.1);
+}
+
+.paidIcon { color: var(--success); }
+.pendingIcon { color: var(--text-muted); }
+
+.paymentInfo {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pDesc {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.pMeta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.pDate {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.pAmount {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.deleteBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.paymentItem:hover .deleteBtn {
+  opacity: 1;
+}
+
+.deleteBtn:hover {
+  color: var(--danger);
+}
+
+.emptyText {
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 24px;
+}
+
+.pDateText {
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.pDateText:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.pDateInput {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--surface-border);
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: inherit;
+}
+

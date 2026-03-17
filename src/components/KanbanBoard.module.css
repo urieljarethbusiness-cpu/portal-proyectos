@@ -1,0 +1,234 @@
+.kanbanBoard {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  min-height: 600px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.01);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.highlightColumn {
+  background: rgba(89, 220, 201, 0.03);
+  border-color: rgba(89, 220, 201, 0.3);
+  box-shadow: inset 0 0 20px rgba(89, 220, 201, 0.05);
+}
+
+.columnHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(89, 220, 201, 0.1);
+}
+
+.columnTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.columnCount {
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 2px 8px;
+  border-radius: 10px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.columnBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+}
+
+.projectCard {
+  background: rgba(25, 25, 30, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px;
+  position: relative;
+  transition: border-color 0.3s ease;
+}
+
+.projectCard:hover {
+  border-color: var(--primary);
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cardHeader {
+  display: flex;
+  gap: 8px;
+}
+
+.statusBadge {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.abierto { background: rgba(255, 255, 255, 0.05); color: var(--text-muted); }
+.terminado { background: rgba(255, 204, 51, 0.1); color: var(--gold); }
+.perdido { background: rgba(255, 92, 92, 0.1); color: var(--danger); }
+
+.freelanceBadge {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.slaBadge {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(89, 220, 201, 0.12);
+  color: var(--primary);
+  padding: 4px 10px;
+  border-radius: 0 var(--radius-md) 0 var(--radius-sm);
+  font-size: 0.65rem;
+  font-weight: 800;
+  border: 1px solid rgba(89, 220, 201, 0.3);
+  z-index: 2;
+  backdrop-filter: blur(5px);
+}
+
+.recurrentBadge {
+  background: rgba(245, 166, 35, 0.15);
+  color: #f5a623;
+  border: 1px solid rgba(245, 166, 35, 0.3);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px rgba(245, 166, 35, 0.4);
+}
+
+
+.projectTitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  transition: var(--transition);
+}
+
+.projectCard:hover .projectTitle {
+  color: var(--primary);
+}
+
+.projectDesc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.cardFooter {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statusToggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.statusDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 0;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.statusDot:hover {
+  transform: scale(1.3);
+}
+
+.statusOpen {
+  background: var(--success);
+  box-shadow: 0 0 8px var(--success);
+}
+
+.statusLost {
+  background: var(--danger);
+  box-shadow: 0 0 8px var(--danger);
+}
+
+.statusDone {
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
+}
+
+.price {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 0.9rem;
+}
+
+.phaseDots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: var(--transition);
+}
+
+.activeDot {
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
+}
+
+.dot:hover:not(.activeDot) {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.emptyColumn {
+  text-align: center;
+  padding: 40px 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+  border: 1px dashed rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+}
+@media (max-width: 1024px) {
+  .kanbanBoard {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}

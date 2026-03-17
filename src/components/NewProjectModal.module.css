@@ -1,0 +1,148 @@
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--primary);
+  color: #000;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.addBtn:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 0 15px var(--primary-glow);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal {
+  width: 100%;
+  max-width: 500px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closeBtn {
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.closeBtn:hover {
+  color: var(--danger);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.field input, .field textarea {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--surface-border);
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  color: #fff;
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.field input:focus, .field textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+.checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.cancelBtn {
+  flex: 1;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.02);
+  transition: var(--transition);
+}
+
+.cancelBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+.submitBtn {
+  flex: 2;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  background: var(--primary);
+  color: #000;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.submitBtn:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 0 15px var(--primary-glow);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

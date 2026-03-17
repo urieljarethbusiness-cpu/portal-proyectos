@@ -1,0 +1,16 @@
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: var(--transition);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.btn:hover {
+  background: rgba(255, 92, 92, 0.1);
+  color: var(--danger);
+}

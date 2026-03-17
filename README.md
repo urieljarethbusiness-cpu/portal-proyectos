@@ -135,6 +135,27 @@ docker run --rm -p 3000:3000 --env-file .env portal-proyectos
 - volumen persistente `app_storage` montado en `/app/storage`,
 - healthcheck HTTP a `http://127.0.0.1:3000/`.
 
+#### Coolify deployment
+
+Variables requeridas en Coolify:
+- `DATABASE_URL` (obligatoria para Prisma y migraciones).
+- `NODE_ENV=production`.
+- `PORT=3000`.
+
+Orden recomendado de despliegue (alineado con scripts):
+
+```bash
+pnpm run build
+pnpm run migrate:deploy
+pnpm run start
+```
+
+También puedes usar el script unificado:
+
+```bash
+pnpm run deploy
+```
+
 ## Troubleshooting
 
 - **Error de conexión a BD / Prisma**

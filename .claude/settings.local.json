@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /h/Proyectos/Proyectos/portal-proyectos log --oneline -20)",
+      "Bash(mkdir -p \"H:/Proyectos/Proyectos/portal-proyectos/.github/workflows\")",
+      "Bash(mkdir -p \"H:/Proyectos/Proyectos/portal-proyectos/prisma/migrations/20250101000000_init\")"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+# Control de versiones
+.git
+.gitignore
+.gitattributes
+
+# Dependencias (se regeneran en el build)
+node_modules
+.pnpm-store
+
+# Salidas de build (se regeneran en el build)
+.next
+dist
+build
+
+# Archivos generados (se regeneran en el build)
+src/generated
+
+# Entorno — nunca incluir secretos en la imagen
+.env
+.env.*
+!.env.example
+
+# Archivos de desarrollo
+*.md
+.github
+storage
+tmp
+
+# Base de datos local de desarrollo
+prisma/dev.db
+prisma/dev.db-journal
+
+# Archivos del SO
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*

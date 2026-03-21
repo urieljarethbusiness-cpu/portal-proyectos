@@ -8,17 +8,20 @@ services:
       NEXT_TELEMETRY_DISABLED: "1"
       PORT: "3000"
       HOSTNAME: "0.0.0.0"
+      # Configura DATABASE_URL en las variables de entorno de Coolify
       DATABASE_URL: ${DATABASE_URL}
     ports:
       - "3000:3000"
     volumes:
+      # Almacenamiento persistente de archivos subidos por proyecto
       - app_storage:/app/storage
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/ || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 5
-      start_period: 20s
+      # start_period largo para dar tiempo a las migraciones en el primer arranque
+      start_period: 60s
     restart: unless-stopped
 
 volumes:

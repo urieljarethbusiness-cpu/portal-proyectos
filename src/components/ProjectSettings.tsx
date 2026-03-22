@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { ReactNode, useRef, useState } from "react";
 import { Calendar, Wallet, Repeat, ChevronDown, Pencil, Check } from "lucide-react";
 import { updateProjectField } from "@/lib/actions";
 import styles from "./ProjectSettings.module.css";
@@ -14,6 +14,7 @@ interface ProjectSettingsProps {
     billingFrequency: string;
     billingName: string | null;
   };
+  statusSlot?: ReactNode;
 }
 
 const FREQUENCIES = [
@@ -30,7 +31,7 @@ const PROJECT_TYPES = [
   { id: "IGUALA", label: "Iguala" }
 ];
 
-export default function ProjectSettings({ project }: ProjectSettingsProps) {
+export default function ProjectSettings({ project, statusSlot }: ProjectSettingsProps) {
   const [isEditingSLA, setIsEditingSLA] = useState(false);
   const [isEditingBillingName, setIsEditingBillingName] = useState(false);
   const [isEditingTitle, setIsEditingTitle] = useState(false);
@@ -82,6 +83,9 @@ export default function ProjectSettings({ project }: ProjectSettingsProps) {
       )}
     </div>
     <div className={styles.metaInfo}>
+      {/* Status slot (renderizado por el padre) */}
+      {statusSlot && <div className={styles.metaItem}>{statusSlot}</div>}
+
       {/* SLA Date */}
       <div className={styles.metaItem}>
         <Calendar size={18} className={styles.metaIcon} />

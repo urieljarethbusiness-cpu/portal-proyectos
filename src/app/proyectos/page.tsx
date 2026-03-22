@@ -6,7 +6,14 @@ export default async function ProyectosPage() {
     orderBy: { createdAt: 'desc' }
   });
 
+  // Serializar fechas (Date → string) antes de pasar al Client Component
+  const projects = allProjects.map(p => ({
+    ...p,
+    slaDate: p.slaDate?.toISOString() ?? null,
+    createdAt: p.createdAt.toISOString(),
+  }));
+
   return (
-    <ProjectBrowser initialProjects={allProjects} />
+    <ProjectBrowser initialProjects={projects} />
   );
 }

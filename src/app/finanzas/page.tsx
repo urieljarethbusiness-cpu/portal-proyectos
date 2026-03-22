@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { prisma } from "@/lib/prisma";
 import styles from "./page.module.css";
 import { ArrowLeft, DollarSign, Wallet, TrendingUp, Calendar } from "lucide-react";

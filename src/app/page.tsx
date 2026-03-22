@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { Activity, Clock, DollarSign, Briefcase } from "lucide-react";
 import styles from "./page.module.css";
 import { prisma } from "@/lib/prisma";

@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { prisma } from "@/lib/prisma";
 import styles from "./page.module.css";
 import { ArrowLeft, DollarSign, Plus, FileText, Calendar, Wallet, Trash2, CheckCircle2, Repeat } from "lucide-react";

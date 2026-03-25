@@ -7,26 +7,60 @@ import path from "path";
 
 export async function uploadFile(projectId: string, formData: FormData) {
   const file = formData.get("file") as File;
-  if (!file) return;
+  if (!file) {
+    console.warn("[uploadFile] No file found in formData", { projectId });
+    return;
+  }
 
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
 
   // Define upload path: storage/projects/[projectId]/[filename]
   const projectDir = path.join(process.cwd(), "storage", "projects", projectId);
-  await fs.mkdir(projectDir, { recursive: true });
-
   const filePath = path.join(projectDir, file.name);
+
+  console.log("[uploadFile] Starting upload", {
+    projectId,
+    filename: file.name,
+    size: file.size,
+    mimeType: file.type,
+    cwd: process.cwd(),
+    projectDir,
+    filePath,
+  });
+
+  await fs.mkdir(projectDir, { recursive: true });
   await fs.writeFile(filePath, buffer);
 
-  // Save to DB
-  await prisma.attachment.create({
-    data: {
-      filename: file.name,
-      filepath: `/storage/projects/${projectId}/${file.name}`,
-      projectId,
-    },
+  const fileExistsAfterWrite = await fs.access(filePath).then(() => true).catch(() => false);
+  console.log("[uploadFile] File written to disk", {
+    projectId,
+    filename: file.name,
+    fileExistsAfterWrite,
   });
+
+  try {
+    const attachment = await prisma.attachment.create({
+      data: {
+        filename: file.name,
+        filepath: `/storage/projects/${projectId}/${file.name}`,
+        projectId,
+      },
+    });
+
+    console.log("[uploadFile] Attachment persisted in database", {
+      projectId,
+      filename: file.name,
+      attachmentId: attachment.id,
+    });
+  } catch (error) {
+    console.error("[uploadFile] Failed to persist attachment in database", {
+      projectId,
+      filename: file.name,
+      error,
+    });
+    throw error;
+  }
 
   revalidatePath(`/proyectos/${projectId}`);
   revalidatePath("/archivos");

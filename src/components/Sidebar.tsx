@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, KanbanSquare, CheckSquare, FolderOpen, ArrowRightFromLine } from "lucide-react";
+import { LayoutDashboard, KanbanSquare, CheckSquare, FolderOpen } from "lucide-react";
 import styles from "./Sidebar.module.css";
 
 const navItems = [
@@ -47,13 +47,6 @@ export default function Sidebar() {
           })}
         </ul>
       </nav>
-
-      <div className={styles.footer}>
-        <button className={styles.logoutBtn}>
-          <ArrowRightFromLine size={18} />
-          <span>Cerrar Sesión</span>
-        </button>
-      </div>
     </aside>
   );
 }

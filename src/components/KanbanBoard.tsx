@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { updateProjectPhase, updateProjectStatus } from "@/lib/actions";
@@ -27,6 +27,10 @@ export default function KanbanBoard({ initialProjects }: { initialProjects: Proj
   const [hoveredColumn, setHoveredColumn] = useState<string | null>(null);
   const columnRefs = useRef<(HTMLDivElement | null)[]>([]);
   const boardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setProjects(initialProjects);
+  }, [initialProjects]);
 
   // Sorting Logic: 
   // 1. Recurrent first, then by price descending

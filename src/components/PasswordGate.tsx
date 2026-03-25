@@ -21,7 +21,7 @@ function getSnapshot() {
 
 export default function PasswordGate({ children }: PasswordGateProps) {
   const isAuthenticated = useSyncExternalStore(subscribe, getSnapshot, () => false);
-  const [password, setPassword] = useState(ACCESS_PASSWORD);
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -62,6 +62,7 @@ export default function PasswordGate({ children }: PasswordGateProps) {
             className={styles.input}
             autoFocus
             autoComplete="current-password"
+            required
           />
 
           {error ? <p className={styles.error}>{error}</p> : null}

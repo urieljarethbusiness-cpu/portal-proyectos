@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { LayoutGrid, List, Calendar } from "lucide-react";
+import { LayoutGrid, List } from "lucide-react";
 import KanbanBoard from "./KanbanBoard";
 import ProjectList from "./ProjectList";
 import NewProjectModal from "./NewProjectModal";
@@ -30,6 +30,10 @@ const PHASE_MAP: Record<string, string> = {
 export default function ProjectBrowser({ initialProjects }: { initialProjects: Project[] }) {
   const [viewMode, setViewMode] = useState<"kanban" | "list">("kanban");
   const [projects, setProjects] = useState(initialProjects);
+
+  const handleProjectCreated = (project: Project) => {
+    setProjects((currentProjects) => [project, ...currentProjects]);
+  };
 
   // Auto-migrate old phases on the client side to ensure they show up
   useEffect(() => {
@@ -79,7 +83,7 @@ export default function ProjectBrowser({ initialProjects }: { initialProjects: P
               <List size={20} />
             </button>
           </div>
-          <NewProjectModal />
+          <NewProjectModal onProjectCreated={handleProjectCreated} />
         </div>
       </header>
 

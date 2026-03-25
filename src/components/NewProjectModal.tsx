@@ -1,12 +1,27 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Plus, X } from "lucide-react";
 import styles from "./NewProjectModal.module.css";
 import { createProject } from "@/lib/actions";
 
-export default function NewProjectModal() {
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  basePrice: number;
+  phase: string;
+  status: string;
+  isFreelance: boolean;
+  projectType: string;
+  slaDate: string | null;
+  createdAt: string;
+}
+
+export default function NewProjectModal({ onProjectCreated }: { onProjectCreated: (project: Project) => void }) {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   if (!isOpen) {
     return (
@@ -29,8 +44,10 @@ export default function NewProjectModal() {
 
         <form 
           action={async (formData) => {
-            await createProject(formData);
+            const project = await createProject(formData);
+            onProjectCreated(project);
             setIsOpen(false);
+            router.refresh();
           }} 
           className={styles.form}
           suppressHydrationWarning

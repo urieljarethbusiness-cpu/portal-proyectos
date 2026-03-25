@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ExternalLink, Calendar, Briefcase, Wallet, Check } from "lucide-react";
+import { ExternalLink, Briefcase, Wallet } from "lucide-react";
 import styles from "./ProjectList.module.css";
 import { updateProjectField, updateProjectPhase } from "@/lib/actions";
 
@@ -39,6 +39,10 @@ export default function ProjectList({ projects: initialProjects }: { projects: P
   const [projects, setProjects] = useState(initialProjects);
   const [editing, setEditing] = useState<{ id: string, field: string } | null>(null);
   const [tempValue, setTempValue] = useState<string>("");
+
+  useEffect(() => {
+    setProjects(initialProjects);
+  }, [initialProjects]);
 
   const startEditing = (project: Project, field: string, value: string) => {
     setEditing({ id: project.id, field });

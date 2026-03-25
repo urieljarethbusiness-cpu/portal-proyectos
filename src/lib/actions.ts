@@ -41,7 +41,7 @@ export async function createProject(formData: FormData) {
 
   const projectType = isFreelance ? "FREELANCE" : "CORPORATE";
 
-  await prisma.project.create({
+  const project = await prisma.project.create({
     data: {
       title,
       description,
@@ -56,6 +56,12 @@ export async function createProject(formData: FormData) {
 
   revalidatePath("/");
   revalidatePath("/proyectos");
+
+  return {
+    ...project,
+    slaDate: project.slaDate?.toISOString() ?? null,
+    createdAt: project.createdAt.toISOString(),
+  };
 }
 
 export async function deleteProject(id: string) {

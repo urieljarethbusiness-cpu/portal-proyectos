@@ -45,9 +45,22 @@ export async function GET(
   const filePath = path.join(process.cwd(), "storage", "projects", projectId, filename);
   const isPreview = request.nextUrl.searchParams.get("preview") === "1";
   const textMode = request.nextUrl.searchParams.get("text") === "1";
+  const ext = path.extname(filename).toLowerCase();
+
+  if (ext === ".docx" && isPreview) {
+    console.info("[files-route] DOCX preview request", {
+      projectId,
+      filename,
+      origin: request.headers.get("origin"),
+      host: request.headers.get("host"),
+      forwardedHost: request.headers.get("x-forwarded-host"),
+      forwardedProto: request.headers.get("x-forwarded-proto"),
+      userAgent: request.headers.get("user-agent"),
+      url: request.nextUrl.toString(),
+    });
+  }
 
   try {
-    const ext = path.extname(filename).toLowerCase();
     const contentType = MIME_TYPES[ext] || "application/octet-stream";
     const dispositionType = isPreview ? "inline" : "attachment";
 

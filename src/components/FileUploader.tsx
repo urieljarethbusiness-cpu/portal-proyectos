@@ -3,11 +3,12 @@
 import { useCallback, useState } from "react";
 import { FileRejection, useDropzone } from "react-dropzone";
 import { FileText, Loader2 } from "lucide-react";
-import { uploadFile } from "@/lib/actions";
+import { useRouter } from "next/navigation";
 import styles from "./FileUploader.module.css";
 
 export default function FileUploader({ projectId }: { projectId: string }) {
   const [isUploading, setIsUploading] = useState(false);
+  const router = useRouter();
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     if (acceptedFiles.length === 0) return;
@@ -34,8 +35,17 @@ export default function FileUploader({ projectId }: { projectId: string }) {
           sizeBytes: file.size,
           mimeType: file.type,
         });
-        await uploadFile(projectId, formData);
+        const response = await fetch(`/api/files/${encodeURIComponent(projectId)}/upload`, {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!response.ok) {
+          const message = await response.text().catch(() => "Upload request failed");
+          throw new Error(`[FileUploader] Upload failed (${response.status}): ${message}`);
+        }
       }
+      router.refresh();
       console.info("[FileUploader] Upload batch completed", {
         projectId,
         totalFiles: acceptedFiles.length,
@@ -48,7 +58,7 @@ export default function FileUploader({ projectId }: { projectId: string }) {
     } finally {
       setIsUploading(false);
     }
-  }, [projectId]);
+  }, [projectId, router]);
 
   const onDropRejected = useCallback((fileRejections: FileRejection[]) => {
     console.warn("[FileUploader] Rejected files", {

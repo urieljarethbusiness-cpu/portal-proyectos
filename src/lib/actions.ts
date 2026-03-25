@@ -12,51 +12,79 @@ export async function uploadFile(projectId: string, formData: FormData) {
     return;
   }
 
+  const uploadStart = Date.now();
+  const filename = file.name;
+  const filenameExt = path.extname(filename).toLowerCase();
+  const filenameLength = filename.length;
+  const suspiciousNamePattern = /[<>:"|?*\\]/.test(filename);
+
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
 
   // Define upload path: storage/projects/[projectId]/[filename]
   const projectDir = path.join(process.cwd(), "storage", "projects", projectId);
-  const filePath = path.join(projectDir, file.name);
+  const filePath = path.join(projectDir, filename);
+  const resolvedProjectDir = path.resolve(projectDir);
+  const resolvedFilePath = path.resolve(filePath);
+  const isPathInsideProjectDir = resolvedFilePath.startsWith(`${resolvedProjectDir}${path.sep}`) || resolvedFilePath === resolvedProjectDir;
 
   console.log("[uploadFile] Starting upload", {
     projectId,
-    filename: file.name,
+    filename,
+    filenameLength,
+    filenameExt,
+    suspiciousNamePattern,
     size: file.size,
+    bytesFromBuffer: buffer.byteLength,
     mimeType: file.type,
     cwd: process.cwd(),
     projectDir,
     filePath,
+    resolvedProjectDir,
+    resolvedFilePath,
+    isPathInsideProjectDir,
   });
 
   await fs.mkdir(projectDir, { recursive: true });
-  await fs.writeFile(filePath, buffer);
+
+  try {
+    await fs.writeFile(filePath, buffer);
+  } catch (error) {
+    console.error("[uploadFile] Failed to write file to disk", {
+      projectId,
+      filename,
+      filePath,
+      error,
+    });
+    throw error;
+  }
 
   const fileExistsAfterWrite = await fs.access(filePath).then(() => true).catch(() => false);
   console.log("[uploadFile] File written to disk", {
     projectId,
-    filename: file.name,
+    filename,
     fileExistsAfterWrite,
   });
 
   try {
     const attachment = await prisma.attachment.create({
       data: {
-        filename: file.name,
-        filepath: `/storage/projects/${projectId}/${file.name}`,
+        filename,
+        filepath: `/storage/projects/${projectId}/${filename}`,
         projectId,
       },
     });
 
     console.log("[uploadFile] Attachment persisted in database", {
       projectId,
-      filename: file.name,
+      filename,
       attachmentId: attachment.id,
+      elapsedMs: Date.now() - uploadStart,
     });
   } catch (error) {
     console.error("[uploadFile] Failed to persist attachment in database", {
       projectId,
-      filename: file.name,
+      filename,
       error,
     });
     throw error;

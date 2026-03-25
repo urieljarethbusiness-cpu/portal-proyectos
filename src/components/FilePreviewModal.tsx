@@ -41,6 +41,16 @@ export default function FilePreviewModal({ isOpen, projectId, filename, onClose 
   }, [isDocx, previewUrl]);
 
   useEffect(() => {
+    if (!isOpen || !isDocx) return;
+    console.info("[FilePreviewModal] DOCX preview bootstrap", {
+      filename,
+      origin: window.location.origin,
+      previewUrl,
+      officeViewerUrl,
+    });
+  }, [isOpen, isDocx, filename, previewUrl, officeViewerUrl]);
+
+  useEffect(() => {
     if (!isOpen) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
@@ -117,7 +127,23 @@ export default function FilePreviewModal({ isOpen, projectId, filename, onClose 
           ) : isPdf ? (
             <iframe title={filename} src={previewUrl} className={styles.previewFrame} />
           ) : isDocx ? (
-            <iframe title={filename} src={officeViewerUrl} className={styles.previewFrame} />
+            <iframe
+              title={filename}
+              src={officeViewerUrl}
+              className={styles.previewFrame}
+              onLoad={() => {
+                console.info("[FilePreviewModal] DOCX iframe loaded", {
+                  filename,
+                  officeViewerUrl,
+                });
+              }}
+              onError={() => {
+                console.error("[FilePreviewModal] DOCX iframe failed", {
+                  filename,
+                  officeViewerUrl,
+                });
+              }}
+            />
           ) : isText ? (
             !textContent && !textError ? (
               <div className={styles.fallback}>Cargando contenido...</div>

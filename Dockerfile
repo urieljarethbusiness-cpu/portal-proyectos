@@ -60,11 +60,14 @@ COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 # Cliente Prisma generado
 COPY --from=builder --chown=nextjs:nodejs /app/src/generated ./src/generated
 
+# Directorio persistente para archivos de proyectos
+RUN mkdir -p /app/storage/projects && chown -R nextjs:nodejs /app/storage
+
 # Script de arranque
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
-USER nextjs
+USER root
 
 EXPOSE 3000
 ENV PORT=3000

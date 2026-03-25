@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import PasswordGate from "@/components/PasswordGate";
 import Sidebar from "@/components/Sidebar";
 import styles from "./layout.module.css";
 
@@ -16,12 +17,14 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
-        <div className={styles.appContainer}>
-          <Sidebar />
-          <main className={styles.mainContent}>
-            {children}
-          </main>
-        </div>
+        <PasswordGate>
+          <div className={styles.appContainer}>
+            <Sidebar />
+            <main className={styles.mainContent}>
+              {children}
+            </main>
+          </div>
+        </PasswordGate>
       </body>
     </html>
   );

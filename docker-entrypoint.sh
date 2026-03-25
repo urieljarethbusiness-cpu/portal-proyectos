@@ -10,5 +10,8 @@ fi
 echo "Aplicando migraciones de base de datos..."
 prisma migrate deploy
 
+echo "Preparando almacenamiento persistente..."
+mkdir -p /app/storage/projects
+
 echo "Iniciando servidor Next.js..."
 exec node server.js
